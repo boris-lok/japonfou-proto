@@ -1,0 +1,36 @@
+syntax="proto3";
+package grpc.auth;
+
+service AuthServices {
+    rpc login (LoginRequest) returns (LoginResponse);
+    rpc auth (AuthRequest) returns (AuthResponse);
+}
+
+message LoginRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    enum Status {
+        Success = 0;
+        Failed = 1;
+    }
+    Status status = 1;
+    optional string token = 2;
+    optional string error_message = 3;
+    optional User user = 4;
+}
+
+message User {
+    uint32 id = 1;
+    string name = 2;
+}
+
+message AuthRequest {
+    string token = 1;
+}
+
+message AuthResponse {
+    bool result = 1;
+}
