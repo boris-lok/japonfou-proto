@@ -41,6 +41,6 @@ message Product {
     int32 currency = 3;
     double price = 4;
     uint64 created_at = 5;
-    optional updated_at = 6;
-    optional deleted_at = 7;
+    optional uint64 updated_at = 6;
+    optional uint64 deleted_at = 7;
 }
