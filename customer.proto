@@ -31,7 +31,7 @@ message GetCustomerRequest {
 
 message ListCustomerRequest {
     string query = 1;
-    optional previous_id = 2;
+    optional cursor = 2;
     uint32 page_size = 3;
 }
 
@@ -41,6 +41,6 @@ message Customer {
     optional string email = 3;
     optional string phone = 4;
     uint64 created_at = 5;
-    uint64 updated_at = 6;
+    optional uint64 updated_at = 6;
 }
 
