@@ -4,8 +4,8 @@ package grpc.customer;
 service CustomerServices {
     rpc create (CreateCustomerRequest) returns (Customer);
     rpc update (UpdateCustomerRequest) returns (Customer);
-    rpc get (GetCustomerRequest) returns (optional Customer);
-    rpc list (ListCustomerRequest) returns (repeated Customer);
+    rpc get (GetCustomerRequest) returns (GetCustoemrResponse);
+    rpc list (ListCustomerRequest) returns (ListCustomerResponse);
 }
 
 enum Status {
@@ -29,10 +29,18 @@ message GetCustomerRequest {
     uint64 id = 1;
 }
 
+message GetCustomerResponse {
+    optional Customer customer = 1;
+}
+
 message ListCustomerRequest {
     string query = 1;
-    optional cursor = 2;
+    optional uint64 cursor = 2;
     uint32 page_size = 3;
+}
+
+message ListCustomerResponse {
+    repeated Customer customers = 1;
 }
 
 message Customer {
