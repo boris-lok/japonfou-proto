@@ -4,13 +4,8 @@ package grpc.product;
 service ProductServices {
     rpc create (CreateProductRequest) returns (Product);
     rpc update (UpdateProductRequest) returns (Product);
-    rpc get (GetProductRequest) returns (optional Product);
-    rpc list (ListProductRequest) returns (repeated Product);
-}
-
-enum Status {
-    success = 0;
-    failed = 1;
+    rpc get (GetProductRequest) returns (GetProductResponse);
+    rpc list (ListProductRequest) returns (ListProductResponse);
 }
 
 message CreateProductRequest {
@@ -20,19 +15,28 @@ message CreateProductRequest {
 }
 
 message UpdateProductRequest {
-    optional string name = 1;
-    optional int32 currency = 2;
-    optional double price = 3;
+    uint64 id = 1;
+    optional string name = 2;
+    optional int32 currency = 3;
+    optional double price = 4;
 }
 
 message GetProductRequest {
     uint64 id = 1;
 }
 
+message GetProductResponse {
+    optional Product product = 1;
+}
+
 message ListProductRequest {
-    string query = 1;
+    optional string query = 1;
     optional cursor = 2;
     uint32 page_size = 3;
+}
+
+message ListProductResponse {
+    repeated Product products = 1;
 }
 
 message Product {
