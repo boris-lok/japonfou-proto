@@ -4,7 +4,7 @@ package grpc.customer;
 service CustomerServices {
     rpc create (CreateCustomerRequest) returns (Customer);
     rpc update (UpdateCustomerRequest) returns (Customer);
-    rpc get (GetCustomerRequest) returns (GetCustoemrResponse);
+    rpc get (GetCustomerRequest) returns (GetCustomerResponse);
     rpc list (ListCustomerRequest) returns (ListCustomerResponse);
 }
 
